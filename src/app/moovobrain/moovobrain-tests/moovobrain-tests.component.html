@@ -1,0 +1,217 @@
+<!-- BEGIN: Content-->
+<div class="app-content content">
+
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+
+    <div class="content-body">
+
+      <!-- Data list view starts -->
+      <section id="data-list-view" class="data-list-view-header">
+
+        <!-- DataTable starts -->
+        <div class="table-responsive">
+          <table class="table data-list-view">
+            <thead>
+            <tr>
+              <th></th>
+              <th>NAME</th>
+              <th>MODE</th>
+              <th>CLIENT</th>
+              <th>REQUEST DATE</th>
+              <th>STATUS</th>
+              <th>SCHEDULED DATE</th>
+              <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let test of testsArray ; let i = index" [id]="'order-'+i">
+              <td></td>
+              <td class="product-name action-edit" (click)="listItemClicked(i)">{{test.name}}</td>
+              <td class="product-category action-edit" (click)="listItemClicked(i)">{{test.mode}}</td>
+              <td class="product-category action-edit" (click)="listItemClicked(i)">{{test.clientNature}}</td>
+              <td class="order-date action-edit"
+                  (click)="listItemClicked(i)">{{test.createdAt | date : 'fullDate'}}</td>
+              <td class="action-edit" (click)="listItemClicked(i)">
+                <div class="chip chip-warning"
+                     [class.chip-warning]="test.status === 'pending'"
+                     [class.chip-danger]="test.status === 'rejected'"
+                     [class.chip-success]="test.status === 'tested'"
+                     [class.chip-primary]="test.status === 'scheduled'">
+                  <div class="chip-body action-edit">
+                    <div class="chip-text">{{test.status}}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="order-date action-edit"
+                  (click)="listItemClicked(i)">{{test.scheduledDate ? (test.scheduledDate | date : 'fullDate') : ''}}</td>
+              <!--              <td class="product-price action-edit" (click)="listItemClicked(i)">{{test.price}}&nbsp;dt</td>-->
+              <td class="product-action">
+                <span class="action-edit" title="More information" (click)="listItemClicked(i)"><i
+                  class="feather icon-eye"></i></span>&nbsp;
+                <span title="Schedule date" data-toggle="modal" data-target="#success"
+                      (click)="selectedElementIndex = i"><i class="feather icon-calendar"></i></span>&nbsp;
+                <span title="Mark as tested"
+                      (click)="selectedElementIndex = i ; updateTestStatus('tested')"><i
+                  class="feather icon-check"></i></span>&nbsp;
+                <span title="Reject request"><i class="feather icon-slash" data-toggle="modal" data-target="#danger"
+                                                (click)="selectedElementIndex = i"></i></span>&nbsp;
+                <span title="Delete request" data-toggle="modal" data-target="#danger-2"
+                      (click)="selectedElementIndex = i"><i class="feather icon-trash"></i></span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- DataTable ends -->
+
+        <!-- add new sidebar starts -->
+        <div class="add-new-data-sidebar">
+          <div class="overlay-bg"></div>
+          <div class="add-new-data">
+            <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
+              <div>
+                <h4 class="text-uppercase">Client data</h4>
+              </div>
+              <div class="hide-data-sidebar">
+                <i class="feather icon-x"></i>
+              </div>
+            </div>
+            <div class="data-items pb-2">
+              <div class="data-fields px-2">
+                <div class="row">
+                  <div class="col-sm-12 data-field-col" *ngIf="testsArray.length>0">
+
+                    <label class="text-dark text-bold-600">Name</label>
+                    <p class="text-62">{{getSelectedTest().name}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Email</label>
+                    <p class="text-62">{{getSelectedTest().email}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Birthday</label>
+                    <p class="text-62">{{getSelectedTest().birthday | date : 'fullDate'}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Country</label>
+                    <p class="text-62 text-capitalize">{{getSelectedTest().country}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Phone</label>
+                    <p class="text-62" style="letter-spacing: 1px">{{getSelectedTest().phone}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Handicap type</label>
+                    <p class="text-62">{{getSelectedTest().handicap}}</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+              <div class="add-data-btn">
+                <button class="btn btn-success" data-toggle="modal" data-target="#success">Confirm request</button>
+              </div>
+              <!--
+                  uncommenting the line below and deleting the "div" under it
+                  will make the sidebar get hidden when button is clicked
+              -->
+
+              <!--              <div class="cancel-data-btn">-->
+              <div>
+                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#danger">Reject</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- add new sidebar ends -->
+      </section>
+      <!-- Data list view end -->
+
+    </div>
+  </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-- confirmation modal -->
+<div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary white">
+        <h5 class="modal-title" id="myModalLabel110">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Picking a date for the test will send a confirmation e-mail to the client informing
+        him with the scheduled date for the test.
+        <br><br>
+        <input type="date" class="form-control" #scheduledDateNew>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary waves-effect waves-light"
+                (click)="setScheduledDate(scheduledDateNew)" data-dismiss="modal">
+          Confirm
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Rejecting modal -->
+<div class="modal fade text-left" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger white">
+        <h5 class="modal-title" id="myModalLabel111">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Rejecting this test request will send an e-mail to the client informing him that his test request has been
+        rejected.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                (click)="updateTestStatus('rejected')">Reject
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Deleting modal -->
+<div class="modal fade text-left" id="danger-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger white">
+        <h5 class="modal-title" id="myModalLabel112">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to delete this test request ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                (click)="deleteTest()">Delete
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

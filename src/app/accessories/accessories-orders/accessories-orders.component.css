@@ -1,0 +1,12 @@
+.btn-outline-primary{
+  display: none !important;
+}
+
+
+.dt-checkboxes-cell {
+  opacity: 0;
+}
+
+.dt-checkboxes-select-all {
+  visibility: hidden;
+}

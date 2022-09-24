@@ -1,0 +1,31 @@
+#add-client-id {
+  background: white;
+  border: none;
+  color: #565656;
+  padding: 0 15px 10px 15px;
+  line-height: 1.45;
+  -webkit-transition: padding 0.35s ease 0s !important;
+  transition: padding 0.35s ease 0s !important;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', Helvetica, Arial, serif;
+  font-weight: 400;
+  overflow-y: hidden;
+}
+
+.add-data-btn {
+  color: #565656;
+  padding: 10px 15px;
+  line-height: 1.45;
+  -webkit-transition: padding 0.35s ease 0s !important;
+  transition: padding 0.35s ease 0s !important;
+}
+
+.add-id-icon{
+  margin-right: 1rem;
+  float: left;
+  font-size: 1.429rem;
+}
+
+.add-id-button {
+  margin-left: 1rem;
+}

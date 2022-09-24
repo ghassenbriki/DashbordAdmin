@@ -1,0 +1,10 @@
+
+  <app-header *ngIf="authService.adminSubject.getValue()"></app-header>
+  <app-menu [class.d-none]="!authService.adminSubject.getValue()"></app-menu>
+  <router-outlet></router-outlet>
+  <app-footer  *ngIf="authService.adminSubject.getValue()"></app-footer>
+
+
+
+
+

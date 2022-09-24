@@ -1,0 +1,32 @@
+.list-style {
+  list-style-type: none;
+}
+
+.list-style li {
+  margin-bottom: 2px ;
+}
+
+.element {
+  padding: 3px 40px ;
+}
+
+.icon {
+  font-size: 25px;
+  margin: 3px 10px;
+}
+
+.fa-facebook-square {
+  color: #3b5998;
+}
+
+.fa-youtube {
+  color: #ff0000;
+}
+
+.fa-twitter-square {
+  color: #55acee;
+}
+
+.fa-linkedin{
+  color: #007bb5;
+}

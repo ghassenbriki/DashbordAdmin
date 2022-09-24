@@ -1,0 +1,511 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+ .main-menu .navigation > li > a > i {
+  font-size : 1.2rem;
+  margin-right : 1rem;
+  float : left;
+}
+
+ .main-menu .navigation .menu-content > li > a > i {
+  margin-right : 1.38rem;
+  font-size : 0.8rem;
+}
+
+ .toggle-icon {
+  margin-right : 0.425rem;
+}
+ .toggle-icon:focus {
+  outline : none;
+}
+
+@media (min-width: 576px) {
+  .menu-flipped .main-menu {
+    right : 0;
+  }
+}
+
+ .navbar .navbar-brand {
+  white-space : nowrap;
+}
+
+ .navbar .navbar-header .nav-toggle {
+  position : absolute;
+  right : 0;
+}
+
+ .main-menu {
+  -webkit-transition : 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition : 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-transform : translate3d(0, 0, 0);
+          transform : translate3d(0, 0, 0);
+  -webkit-backface-visibility : hidden;
+          backface-visibility : hidden;
+}
+
+.menu-expanded .navbar .navbar-header {
+  float : left;
+  width : 260px;
+}
+
+.menu-expanded .navbar .navbar-brand .brand-text {
+  -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+          animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+}
+
+.menu-expanded .main-menu {
+  width : 260px;
+}
+.menu-expanded .main-menu .navigation .navigation-header .icon-minus {
+  display : none;
+}
+.menu-expanded .main-menu .navigation > li > a > i {
+  margin-right : 1rem;
+  float : left;
+}
+.menu-expanded .main-menu .navigation > li > a > i:before {
+  font-size : 1.429rem;
+}
+.menu-expanded .main-menu .navigation > li > a > span {
+  -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+          animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+}
+.menu-expanded .main-menu .navigation > li > a > span.badge {
+  position : absolute;
+  right : 20px;
+}
+.menu-expanded .main-menu .navigation li.has-sub > a:not(.mm-next):after {
+  content : '\f105';
+  font-family : 'FontAwesome';
+  font-size : 1.1rem;
+  display : inline-block;
+  position : absolute;
+  right : 25px;
+  top : 10px;
+  -webkit-transform : rotate(0deg);
+      -ms-transform : rotate(0deg);
+          transform : rotate(0deg);
+  transition : -webkit-transform 0.2s ease-in-out;
+}
+.menu-expanded .main-menu .navigation li.open > a:not(.mm-next):after {
+  -webkit-transform : rotate(90deg);
+      -ms-transform : rotate(90deg);
+          transform : rotate(90deg);
+}
+.menu-expanded .main-menu .main-menu-footer {
+  width : 260px;
+}
+
+.menu-expanded .footer {
+  margin-left : 260px;
+}
+
+.menu-collapsed .navbar .navbar-header {
+  float : left;
+  width : 80px;
+}
+.menu-collapsed .navbar .navbar-header .modern-nav-toggle {
+  display : none;
+}
+.menu-collapsed .navbar .navbar-header.expanded {
+  width : 260px;
+  z-index : 1000;
+}
+.menu-collapsed .navbar .navbar-header.expanded .modern-nav-toggle {
+  display : block;
+}
+.menu-collapsed .navbar .navbar-header.expanded .navbar-brand .brand-text {
+  -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+          animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+}
+.menu-collapsed .navbar .navbar-header .navbar-brand .brand-text {
+  -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+          animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+}
+
+.menu-collapsed .navbar .navbar-brand {
+  padding : 15px 0;
+}
+
+.menu-collapsed .navbar.fixed-top {
+  left : 80px;
+}
+
+.menu-collapsed .main-menu {
+  width : 80px;
+  -webkit-transition : 300ms ease all;
+          transition : 300ms ease all;
+  -webkit-backface-visibility : hidden;
+          backface-visibility : hidden;
+  -webkit-transform : translate3d(0, 0, 0);
+          transform : translate3d(0, 0, 0);
+}
+.menu-collapsed .main-menu .main-menu-footer {
+  width : 80px;
+}
+.menu-collapsed .main-menu .main-menu-footer, .menu-collapsed .main-menu .main-menu-header .media-body .media-heading, .menu-collapsed .main-menu .main-menu-header .media-body .text-muted, .menu-collapsed .main-menu .main-menu-header .media-right {
+  display : none;
+}
+.menu-collapsed .main-menu .main-menu-header .media-body {
+  opacity : 0;
+}
+.menu-collapsed .main-menu .navbar-header .brand-text, .menu-collapsed .main-menu .modern-nav-toggle {
+  display : none;
+}
+.menu-collapsed .main-menu .user-content {
+  padding : 20px 10px;
+}
+.menu-collapsed .main-menu:not(.expanded) .navigation-header {
+  margin : 0;
+}
+.menu-collapsed .main-menu:not(.expanded) .navigation li a {
+  line-height : 1;
+}
+.menu-collapsed .main-menu:not(.expanded) .navigation li:last-child {
+  margin-bottom : 1.25rem !important;
+}
+.menu-collapsed .main-menu:not(.expanded) .navigation li.active a {
+  background : whitesmoke;
+  box-shadow : none;
+  color : #565656;
+}
+.menu-collapsed .main-menu .navigation {
+  overflow : visible;
+}
+.menu-collapsed .main-menu .navigation > li.navigation-header .icon-minus {
+  display : block;
+  font-size : 1.2rem;
+}
+.menu-collapsed .main-menu .navigation > li.navigation-header span {
+  display : none;
+}
+.menu-collapsed .main-menu .navigation > li > a {
+  text-overflow : inherit;
+}
+.menu-collapsed .main-menu .navigation > li > a > span {
+  -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+          animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+}
+.menu-collapsed .main-menu .navigation > li > a > span.badge {
+  float : none !important;
+}
+.menu-collapsed .main-menu .navigation > li > a i {
+  margin-right : 1rem;
+  float : left;
+}
+.menu-collapsed .main-menu .navigation > li > a i:before {
+  font-size : 1.429rem;
+}
+.menu-collapsed .main-menu .mTSWrapper {
+  overflow : visible;
+}
+.menu-collapsed .main-menu.expanded {
+  width : 260px;
+}
+.menu-collapsed .main-menu.expanded .navigation > li.navigation-header .icon-minus {
+  display : none;
+}
+.menu-collapsed .main-menu.expanded .navigation > li.navigation-header span {
+  display : block;
+}
+.menu-collapsed .main-menu.expanded .navigation > li > a > span {
+  -webkit-animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+          animation : 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+}
+.menu-collapsed .main-menu.expanded .navigation > li > a > span.badge {
+  position : absolute;
+  right : 20px;
+}
+.menu-collapsed .main-menu.expanded .navigation li.has-sub > a:not(.mm-next):after {
+  content : '\f105';
+  font-family : 'FontAwesome';
+  font-size : 1rem;
+  display : inline-block;
+  position : absolute;
+  right : 25px;
+  top : 10px;
+  -webkit-transform : rotate(0deg);
+      -ms-transform : rotate(0deg);
+          transform : rotate(0deg);
+  transition : -webkit-transform 0.2s ease-in-out;
+}
+.menu-collapsed .main-menu.expanded .navigation li.open > a:not(.mm-next):after {
+  -webkit-transform : rotate(90deg);
+      -ms-transform : rotate(90deg);
+          transform : rotate(90deg);
+}
+.menu-collapsed .main-menu.expanded .navbar-header .brand-text {
+  display : inline;
+}
+.menu-collapsed .main-menu.expanded .modern-nav-toggle {
+  display : block;
+}
+
+.menu-collapsed .app-content, .menu-collapsed .footer {
+  margin-left : 80px;
+}
+
+.menu-collapsed .header-navbar.floating-nav {
+  width : calc(100vw - (100vw - 100%) - 4.4rem - 80px);
+}
+
+.menu-collapsed .header-navbar.navbar-static-top {
+  width : calc(100vw - (100vw - 100%) - 80px);
+  left : 80px;
+}
+
+.menu-collapsed.menu-flipped .content {
+  margin : 0;
+  margin-right : 80px;
+}
+
+@media (min-width: 576px) {
+  .menu-collapsed.menu-flipped .main-menu {
+    right : 0;
+  }
+  .menu-collapsed.menu-flipped .main-menu span.menu-title {
+    right : 80px;
+  }
+  .menu-collapsed.menu-flipped .main-menu ul.menu-content {
+    right : 80px;
+    left : inherit;
+  }
+}
+
+.menu-collapsed.menu-flipped .navbar .navbar-header {
+  float : right;
+}
+
+.menu-collapsed.menu-flipped .navbar .navbar-container {
+  margin : 0;
+  margin-right : 80px;
+}
+
+.menu-collapsed.menu-flipped .footer {
+  margin : 0;
+  margin-right : 80px;
+}
+
+@media (min-width: 992px) {
+   .main-menu {
+    width : 260px;
+  }
+   .main-menu .navigation li.navigation-header .icon-minus {
+    display : none;
+  }
+   .navbar .navbar-header {
+    width : 260px;
+  }
+   .footer {
+    margin-left : 260px;
+  }
+  .menu-flipped .content {
+    margin : 0;
+    margin-right : 260px;
+  }
+  .menu-flipped .navbar .navbar-header {
+    float : right;
+  }
+  .menu-flipped .navbar .navbar-container {
+    margin : 0;
+    margin-right : 260px;
+  }
+  .menu-flipped .footer {
+    margin : 0;
+    margin-right : 260px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+   .main-menu {
+    width : 0;
+    opacity : 0;
+    left : -260px;
+  }
+   .main-menu .navigation > li > a > span {
+    -webkit-animation : 0.1s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+            animation : 0.1s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+  }
+   .main-menu .navigation li.navigation-header span {
+    display : none;
+  }
+   .navbar .navbar-header {
+    width : 0;
+  }
+   .content,  .footer {
+    margin-left : 0;
+  }
+  .menu-collapsed .app-content, .menu-collapsed .footer {
+    margin-left : 0;
+  }
+  .menu-collapsed .main-menu {
+    width : 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+   .main-menu {
+    width : 0;
+  }
+   .navbar .navbar-header {
+    width : 0;
+  }
+   .content,  .footer {
+    margin-left : 0;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity : 0;
+  }
+  to {
+    opacity : 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity : 0;
+  }
+  to {
+    opacity : 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    opacity : 1;
+  }
+  to {
+    opacity : 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity : 1;
+  }
+  to {
+    opacity : 0;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .vertical-menu-modern.vertical-layout .main-menu .navigation > li > a > span {
+    -webkit-animation : none;
+            animation : none;
+  }
+}
+
+/*=========================================================================================
+    File Name: vertical-overlay-menu.scss
+    Description: A overlay style vertical menu with show and hide support. It support
+    light & dark version, filpped layout, right side icons, native scroll and borders menu
+    item seperation.
+    ----------------------------------------------------------------------------------------
+    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Author: PIXINVENT
+    Author URL: http://www.themeforest.net/user/pixinvent
+==========================================================================================*/
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+.vertical-overlay-menu .content {
+  margin-left : 0;
+}
+
+.vertical-overlay-menu .navbar .navbar-header {
+  float : left;
+  width : 260px;
+}
+
+.vertical-overlay-menu .navbar.header-navbar.floating-nav {
+  width : calc(100vw - (100vw - 100%) - calc(2.2rem * 2));
+}
+
+.vertical-overlay-menu .main-menu, .vertical-overlay-menu.menu-hide .main-menu {
+  opacity : 0;
+  -webkit-transform : translate3d(0, 0, 0);
+          transform : translate3d(0, 0, 0);
+  -webkit-transition : width 0.25s,opacity 0.25s,-webkit-transform 0.25s;
+          transition : width 0.25s,opacity 0.25s,-webkit-transform 0.25s;
+          transition : width 0.25s,opacity 0.25s,transform 0.25s;
+          transition : width 0.25s,opacity 0.25s,transform 0.25s,-webkit-transform 0.25s;
+  width : 260px;
+  left : -260px;
+}
+.vertical-overlay-menu .main-menu .navigation .navigation-header .icon-minus {
+  display : none;
+}
+.vertical-overlay-menu .main-menu .navigation > li > a > i {
+  margin-right : 14px;
+  float : left;
+}
+.vertical-overlay-menu .main-menu .navigation > li > a > i:before {
+  -webkit-transition : 200ms ease all;
+          transition : 200ms ease all;
+  font-size : 1.429rem;
+}
+.vertical-overlay-menu .main-menu .navigation li.has-sub > a:not(.mm-next):after {
+  content : '\f105';
+  font-family : 'FontAwesome';
+  font-size : 1rem;
+  display : inline-block;
+  position : absolute;
+  right : 25px;
+  top : 10px;
+  -webkit-transform : rotate(0deg);
+      -ms-transform : rotate(0deg);
+          transform : rotate(0deg);
+  transition : -webkit-transform 0.2s ease-in-out;
+}
+.vertical-overlay-menu .main-menu .navigation li.open > a:not(.mm-next):after {
+  -webkit-transform : rotate(90deg);
+      -ms-transform : rotate(90deg);
+          transform : rotate(90deg);
+}
+.vertical-overlay-menu .main-menu .navigation li a i {
+  font-size : 1.1rem;
+}
+.vertical-overlay-menu .main-menu .main-menu-footer {
+  bottom : 55px;
+}
+.vertical-overlay-menu .main-menu .main-menu-footer {
+  width : 260px;
+}
+
+.vertical-overlay-menu.menu-open .main-menu {
+  opacity : 1;
+  -webkit-transform : translate3d(260px, 0, 0);
+          transform : translate3d(260px, 0, 0);
+  -webkit-transition : width 0.25s,opacity 0.25s,-webkit-transform 0.25s;
+          transition : width 0.25s,opacity 0.25s,-webkit-transform 0.25s;
+          transition : width 0.25s,opacity 0.25s,transform 0.25s;
+          transition : width 0.25s,opacity 0.25s,transform 0.25s,-webkit-transform 0.25s;
+}
+
+.vertical-overlay-menu.menu-flipped .main-menu {
+  right : -260px;
+  left : inherit;
+}
+
+.vertical-overlay-menu.menu-flipped .navbar .navbar-container {
+  margin : 0;
+  margin-right : 260px;
+}
+
+.vertical-overlay-menu.menu-flipped .navbar .navbar-header {
+  float : right;
+}
+
+.vertical-overlay-menu.menu-flipped.menu-open .main-menu {
+  -webkit-transform : translate3d(-260px, 0, 0);
+          transform : translate3d(-260px, 0, 0);
+}
+
+@media (max-width: 991.98px) {
+  .vertical-overlay-menu .main-menu .main-menu-footer {
+    bottom : 0;
+  }
+}

@@ -1,0 +1,11 @@
+.dt-checkboxes-cell {
+  opacity: 0;
+}
+
+.dt-checkboxes-select-all {
+  visibility: hidden;
+}
+
+p {
+  white-space: pre-wrap;
+}

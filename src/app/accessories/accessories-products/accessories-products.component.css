@@ -1,0 +1,7 @@
+.dt-checkboxes-cell {
+  opacity: 0;
+}
+
+.dt-checkboxes-select-all {
+  visibility: hidden;
+}

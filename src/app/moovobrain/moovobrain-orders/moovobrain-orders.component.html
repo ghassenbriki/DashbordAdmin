@@ -1,0 +1,343 @@
+<!-- BEGIN: Content-->
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+
+    <div class="content-body">
+      <!-- Data list view starts -->
+      <section id="data-list-view" class="data-list-view-header">
+
+        <!-- DataTable starts -->
+        <div class="table-responsive">
+          <table class="table data-list-view">
+            <thead>
+            <tr>
+              <th></th>
+              <th>MODE</th>
+              <th>CLIENT</th>
+              <th>ORDER DATE</th>
+              <th>QUANTITY</th>
+              <th>TOTAL PRICE</th>
+              <th>ORDER STATUS</th>
+              <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of ordersArray ; let i = index" [id]="'order-'+i">
+              <td></td>
+              <td class="product-name action-edit text-capitalize" (click)="listItemClicked(i)">{{order.mode}}</td>
+              <td class="product-category action-edit" (click)="listItemClicked(i)">{{order.clientNature}}</td>
+              <td class="order-date action-edit"
+                  (click)="listItemClicked(i)">{{order.createdAt | date : 'fullDate'}}</td>
+
+              <td class="product-quantity action-edit" (click)="listItemClicked(i)">{{order.quantity || 1}}</td>
+
+              <!--      if order is validated we get the total price otherwise we get the purchase price        -->
+              <td class="product-price action-edit"
+                  (click)="listItemClicked(i)">
+                <span *ngIf="order.mode === 'voice'">
+                  {{order.priceTotal && order.priceTotal > 0 ? order.priceTotal : order.pricePurchase}}&nbsp;dt
+                </span>
+              </td>
+
+              <td class="action-edit" (click)="listItemClicked(i)">
+
+
+
+                <!-- Delete this and replace by the commented part below if you want to handle all status  -->
+                <div class="chip chip-info">
+                  <div class="chip-body action-edit">
+                    <div class="chip-text">Pre-ordered</div>
+                  </div>
+                </div>
+
+                <!--
+                    DO NOT DELETE THE CODE BELOW
+
+                    since we're using pre-orders now all orders are set to pre-ordered
+                    But all code is implemented to handle all status , you just have to
+                    uncomment the code below  and delete the part up (the one with the chip class )
+                -->
+
+<!--                <div class="chip"-->
+<!--                     [class.chip-info]="order.status === 'pre-ordered'"-->
+<!--                     [class.chip-primary]="order.status === 'shipped'"-->
+<!--                     [class.chip-secondary]="order.status === 'submitted'"-->
+<!--                     [class.chip-warning]="order.status === 'pending'"-->
+<!--                     [class.chip-danger]="order.status === 'rejected'"-->
+<!--                     [class.chip-success]="order.status === 'validated'">-->
+<!--                  <div class="chip-body action-edit">-->
+<!--                    <div class="chip-text">{{order.status}}</div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+
+              </td>
+
+              <td class="product-action">
+                <span class="action-edit" title="More information" (click)="listItemClicked(i)">
+                  <i class="feather icon-eye"></i>
+                </span>&nbsp;
+
+                <span title="Confirm order" data-toggle="modal" data-target="#success"
+                      (click)="selectedElementIndex = i" *ngIf="order.mode ==='voice'">
+                  <i class="feather icon-check" *ngIf="!isValidationLoading || selectedElementIndex!==i"></i>
+                  <app-loader radius="15" *ngIf="isValidationLoading && selectedElementIndex===i"></app-loader>
+                &nbsp;</span>
+
+                <span title="Reject order" *ngIf="order.mode ==='voice'">
+                  <i class="feather icon-slash" data-toggle="modal" data-target="#danger" (click)="selectedElementIndex = i"></i>
+                &nbsp;</span>
+
+                <span title="Delete order" data-toggle="modal" data-target="#danger-2" (click)="selectedElementIndex = i"><i class="feather icon-trash"></i>
+                 &nbsp;</span>
+
+                <span title="Set as shipped" *ngIf="order.status === 'validated'" (click)="selectedElementIndex = i;updateOrderStatus('shipped')">
+                  <app-loader radius="15" *ngIf="isShippingLoading && selectedElementIndex === i"></app-loader><i class="feather icon-anchor" *ngIf="!isShippingLoading || selectedElementIndex !== i"></i>
+                </span>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- DataTable ends -->
+
+        <!-- add new sidebar starts -->
+        <div class="add-new-data-sidebar" *ngIf="ordersArray.length>0">
+          <div class="overlay-bg"></div>
+          <div class="add-new-data" [class.full-height-brain]="getSelectedOrder().mode === 'brain'">
+            <div class="div mt-2 px-2 d-flex new-data-title justify-content-between"
+                 *ngIf="getSelectedOrder().mode === 'voice'">
+              <div>
+                <h4 class="text-uppercase">Order data</h4>
+              </div>
+              <div class="hide-data-sidebar">
+                <i class="feather icon-x"></i>
+              </div>
+            </div>
+            <div class="data-items pb-2">
+              <div class="data-fields px-2">
+                <div class="row">
+                  <div class="col-sm-12 data-field-col" *ngIf="ordersArray.length>0">
+
+            <!--=================================
+                        #for voice mode
+                =================================-->
+
+                    <div *ngIf="getSelectedOrder().mode === 'voice'">
+                      <label class="text-dark text-bold-600 text-large">Wheelchair</label>
+                      <p class="text-62">Voice mode steering system</p>
+                      <hr>
+                      <p class="text-62">Microphone</p>
+                      <hr>
+                      <p class="text-62">Electric wheelchair</p>
+                      <hr>
+                      <p class="text-62">Smart Display</p>
+                      <hr>
+
+                      <label class="text-dark text-bold-600 text-large">Safety</label>
+
+                      <p class="text-62">Speaker dependent technology</p>
+                      <hr>
+
+                      <div>
+                        <p class="text-62">Geolocation app</p>
+                        <hr>
+                      </div>
+
+
+
+
+                      <label class="text-dark text-bold-600 text-large">Accessories</label>
+
+                      <div>
+                        <p class="text-62">Security Belt</p>
+                        <hr>
+                      </div>
+
+                      <div>
+                        <p class="text-62">Headrest Neck Support</p>
+                        <hr>
+                      </div>
+
+                    </div>
+
+                    <div>
+                      <h4 class="text-uppercase">{{getSelectedOrder().clientNature}} data</h4>
+                      <hr>
+                    </div>
+
+                    <label class="text-dark text-bold-600">Name</label>
+                    <p class="text-62">{{getSelectedOrder().oName || getSelectedOrder().iName}}</p>
+                    <hr>
+
+                    <div *ngIf="getSelectedOrder().clientNature==='organisation'">
+                      <label class="text-dark text-bold-600">Type</label>
+                      <p class="text-62">{{getSelectedOrder().oType || none}}</p>
+                      <hr>
+                      <label class="text-dark text-bold-600">Sector</label>
+                      <p class="text-62">{{getSelectedOrder().oSector || none}}</p>
+                      <hr>
+                      <label class="text-dark text-bold-600">Registration Number</label>
+                      <p class="text-62 custom-spacing">{{getSelectedOrder().oRegistrationNumber || none}}</p>
+                      <hr>
+                      <label class="text-dark text-bold-600">Responsible Name</label>
+                      <p class="text-62">{{getSelectedOrder().oResponsibleName || none}}</p>
+                      <hr>
+                    </div>
+
+                    <div *ngIf="getSelectedOrder().clientNature==='individual'">
+                      <label class="text-dark text-bold-600">Birthday</label>
+                      <p class="text-62">{{getSelectedOrder().iBirthday | date : 'fullDate'}}</p>
+                      <hr>
+                    </div>
+
+                    <label class="text-dark text-bold-600">Handicap Type</label>
+                    <p class="text-62">{{getSelectedOrder().iHandicap || getSelectedOrder().oHandicap || none}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Address</label>
+                    <p class="text-62">{{getSelectedOrder().iAddress || getSelectedOrder().oAddress || none}}
+                      , {{getSelectedOrder().iZipCode || getSelectedOrder().iZipCode || ''}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Phone</label>
+                    <p
+                      class="text-62 custom-spacing">{{getSelectedOrder().iPhone || getSelectedOrder().oPhone || none}}</p>
+                    <hr>
+                    <label class="text-dark text-bold-600">Email</label>
+                    <p class="text-62">{{getSelectedOrder().iEmail || getSelectedOrder().oEmail || none}}</p>
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <!--
+                This part ( confirming orders ) is disabled for now since all we have is pre-order and there is no need for confirming
+                but its code is fully implemented in backend and gewinner website and if you want to make order "confirmable" is
+                to remove the false condition below and changing the email sent in backend to another one that is
+                already written and ready too
+            -->
+            <div class="add-data-footer d-flex justify-content-around px-3 mt-2" *ngIf="false">
+              <div class="add-data-btn">
+                <button class="btn btn-success" data-toggle="modal" data-target="#success">Confirm order</button>
+              </div>
+
+              <!--
+                  uncommenting the line below and deleting the "div" under it
+                  will make the sidebar gets hidden when the button is clicked
+              -->
+              <!--<div class="cancel-data-btn">-->
+              <div>
+                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#danger">Reject order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- add new sidebar ends -->
+      </section>
+      <!-- Data list view end -->
+
+    </div>
+  </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-- confirmation modal -->
+<div class="modal fade text-left" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary white">
+        <h5 class="modal-title" id="myModalLabel110">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirming this order will send a confirmation e-mail to the client informing
+        him that he will be receiving his order soon and the order will be set as delivered.
+        <br>
+        <br>
+        <div>
+          <div class="row">
+
+            <div class="col-6" style="padding-right: 5px">
+              <input type="number" class="form-control" placeholder="Shipping price" #priceShippingInput>
+            </div>
+
+            <div class="col-6" style="padding-left: 5px">
+              <input type="number" class="form-control" placeholder="Taxes" #priceTaxesInput>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary waves-effect waves-light"
+                (click)="validateOrder(priceShippingInput,priceTaxesInput)" data-dismiss="modal">
+          Confirm
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Rejecting modal -->
+<div class="modal fade text-left" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger white">
+        <h5 class="modal-title" id="myModalLabel111">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Rejecting this order will send an e-mail to the client informing him that his order is rejected.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                (click)="updateOrderStatus('rejected')">Reject
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Deleting modal -->
+<div class="modal fade text-left" id="danger-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger white">
+        <h5 class="modal-title" id="myModalLabel112">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to delete this order ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                (click)="deleteOrder()">Delete
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

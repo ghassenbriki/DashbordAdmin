@@ -1,0 +1,17 @@
+.dt-checkboxes-cell {
+  opacity: 0;
+}
+
+.dt-checkboxes-select-all {
+  visibility: hidden;
+}
+
+
+
+.custom-spacing {
+  letter-spacing: 1px;
+}
+/* this is only for brain mode */
+.full-height-brain {
+  height: 120vh !important;
+}

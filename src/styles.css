@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*======================
+  Lists of orders and products
+  ======================*/
+.text-62{
+ color: #626262;
+}
+
+.action-edit {
+  white-space: nowrap !important;
+}
+
+.order-action-buttons{
+  cursor: pointer;
+}
+
+.product-img img{
+  height: 5.857rem;
+  width: 5.857rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.btn-outline-primary {
+  border: 1px solid #7367F0;
+  background-color: transparent;
+  color: #7367F0;
+}
+
+.chip-body {
+  justify-content: center !important;
+}
+
+
+table.dataTable thead .sorting_asc:first-of-type:before ,
+table.dataTable thead .sorting_asc:first-of-type:after,
+.accessories-products table.dataTable thead .sorting:nth-of-type(2):before,
+.accessories-products table.dataTable thead .sorting:nth-of-type(2):after {
+  display: none !important;
+}
+
+.accessories-products table.data-list-view.dataTable tbody td, .accessories-products table.data-thumb-view.dataTable tbody td {
+
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
+
+}
+
+.btn-outline-primary{
+  display: none !important;
+}
+
+.accessories-products .btn-outline-primary{
+  display: block !important;
+}
+
+.accessories-products .custom-switch .custom-control-label::before{
+  width: 4.3rem !important;
+}
+
+.accessories-products .custom-switch .custom-control-label .switch-text-right {
+  right: -14px !important;
+}
+
+.accessories-products .custom-switch .custom-control-label .switch-text-left {
+  left: 4px !important;
+}
+
+.accessories-products .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  transform: translateX(2.8rem) !important;
+}
+
+.accessories-products .custom-control {
+  position: relative !important;
+  display: block !important;
+  min-height: 1.45rem !important;
+  padding-left: 1.5rem !important;
+  top: 14px !important;
+}
+
+
+.text-large{
+  margin-bottom: 7px;
+  font-size: large;
+}
+
+.product-action i{
+  transition: 0.2s;
+}
+.product-action i:hover{
+  font-size: 17px;
+}
+
+ngx-dropzone {
+  border: 2px dashed #7367F0 !important;
+  background: #F8F8F8;
+  border-radius: 3px;
+  padding: 23px;
+}
+
+ngx-dropzone-label {
+  font-size: 2rem;
+  color: #7367F0;
+}
+/* a Download icon will be shown with products upload images if you uncomment this code below */
+/*ngx-dropzone-label:before{*/
+/*  content: '\e864';*/
+/*  font-family: 'feather';*/
+/*}*/
+
+
+
+/* =======================
+    # Clients list (table)
+   ======================= */
+
+.aggrid .ag-paging-panel .ag-paging-page-summary-panel {
+  display: none;
+}
+
+.aggrid .ag-paging-panel {
+  height: 21px !important;
+}
+
+
+
+
+/* =======================
+    # Coming events calender
+   ======================= */
+.bullets-group-1 {
+  display: none !important;
+}
+
+/* =======================
+    # Prevent line break in list items
+   ======================= */
+.product-action , .product-name , .action-edit {
+  white-space: nowrap;
+}

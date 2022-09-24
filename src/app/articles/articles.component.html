@@ -1,0 +1,166 @@
+<!-- BEGIN: Content-->
+<div class="app-content content accessories-products">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+
+    <div class="content-body">
+      <!-- Data list view starts -->
+      <section id="data-list-view" class="data-list-view-header">
+        <div class="add-new-data-sidebar">
+          <div class="overlay-bg"></div>
+          <div class="add-new-data">
+            <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
+              <div>
+                <h4 class="text-uppercase">News Article</h4>
+              </div>
+              <div class="hide-data-sidebar">
+                <i class="feather icon-x"></i>
+              </div>
+            </div>
+            <div class="data-items pb-2">
+              <div class="data-fields px-2">
+                <div class="row">
+                  <div class="col-sm-12 data-field-col" *ngIf="articlesArray.length>0">
+                    <form [formGroup]="form">
+                      <label for="article-name">Title</label>
+                      <input type="text" formControlName="title" class="form-control" id="article-name">
+
+                      <div class="data-field-col">
+                        <label for="article-author">Author</label>
+                        <input type="text" formControlName="author" class="form-control" id="article-author">
+                      </div>
+
+                      <div class="data-field-col">
+                        <label for="article-introduction">Introduction</label>
+                        <textarea rows="2" class="form-control"
+                                  style="resize: vertical" formControlName="introduction"
+                                  id="article-introduction"></textarea>
+                      </div>
+
+
+                      <div class="data-field-col">
+                        <label for="article-text">Article text</label>
+                        <textarea rows="5" class="form-control"
+                                  style="resize: vertical" formControlName="text"
+                                  id="article-text"></textarea>
+                      </div>
+
+                      <div id="email-container" class="data-field-col">
+                        <div class="editor" data-placeholder="Text">
+                        </div>
+                      </div>
+
+                      <div class="data-field-col">
+                        <ngx-dropzone (change)="onSelect($event)">
+                          <ngx-dropzone-label>Upload Image</ngx-dropzone-label>
+                          <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                                                      [file]="f">
+                            <ngx-dropzone-label></ngx-dropzone-label>
+                          </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
+                      </div>
+
+
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+              <div class="add-data-btn">
+                <button class="btn btn-primary" *ngIf="isAddingNew" type="button" (click)="addNewArticle()">
+                 <app-loader *ngIf="isLoading" radius="15"></app-loader> Add article
+                </button>
+                <button class="btn btn-primary" *ngIf="!isAddingNew" type="button" (click)="updateArticle()">
+                  <app-loader *ngIf="isLoading" radius="15"></app-loader> Update article
+                </button>
+              </div>
+              <div class="cancel-data-btn">
+                <button class="btn btn-outline-danger" (click)="clearFormValues()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- DataTable ends -->
+        <!-- add new sidebar starts -->
+        <div class="table-responsive">
+          <table class="table data-list-view">
+            <thead>
+            <tr>
+              <th></th>
+              <th>IMAGE</th>
+              <th>TITLE</th>
+              <th>AUTHOR</th>
+              <th>PUBLISH DATE</th>
+              <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let article of articlesArray; let i = index" [id]="'order-'+i">
+              <td></td>
+              <td class="product-img action-edit"
+                  (click)="selectedElementIndex = i ; isAddingNew = false ; setFormValues()"><img
+                src="{{url+article.imageURL}}" alt=""></td>
+              <td class="product-name action-edit"
+                  (click)="selectedElementIndex = i ; isAddingNew = false ; setFormValues()">
+                &nbsp;{{article.title}}</td>
+              <td class="product-category action-edit"
+                  (click)="selectedElementIndex = i ;isAddingNew = false ; setFormValues()">
+                &nbsp;{{article.author}}</td>
+              <td class="order-date action-edit"
+                  (click)="selectedElementIndex = i;isAddingNew = false ; setFormValues()">{{article.createdAt | date : 'fullDate'}}</td>
+              <td class="product-action">
+                <span class="action-edit" title="Edit product"
+                      (click)="selectedElementIndex = i ; isAddingNew = false ; setFormValues()"><i
+                  class="feather icon-edit"></i></span>&nbsp;
+                <span title="Delete product" data-toggle="modal" data-target="#danger-2"
+                      (click)="selectedElementIndex = i ;isAddingNew = false ;">
+                  <app-loader *ngIf="isDeleting && selectedElementIndex === i" radius="16"></app-loader>
+                  <i class="feather icon-trash" *ngIf="!(isDeleting && selectedElementIndex === i)"></i>
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- add new sidebar ends -->
+      </section>
+      <!-- Data list view end -->
+
+    </div>
+  </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-- Deleting modal -->
+<div class="modal fade text-left" id="danger-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
+     style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger white">
+        <h5 class="modal-title" id="myModalLabel112">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to delete this order ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                (click)="deleteArticle()">Delete
+        </button>
+        <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-dismiss="modal">Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
