@@ -1,0 +1,52 @@
+<!-- BEGIN: Content-->
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+    <div class="content-body">
+      <!-- users list start -->
+      <section class="users-list-wrapper">
+        <!-- users filter start -->
+        <mat-table [dataSource]="dataSource" matSort>
+          <!-- ID Column -->
+          <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let mission " [routerLinkActive]="'active'" >{{mission.Id}}</mat-cell>
+          </ng-container>
+          <!-- Progress Column -->
+          <ng-container matColumnDef="Sponsor">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Sponsor </mat-header-cell>
+            <mat-cell *matCellDef="let mission"> {{mission.sponsor}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Category">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+            <mat-cell *matCellDef="let mission"> {{mission.category}}</mat-cell>
+          </ng-container>
+          <!-- Color Column -->
+          <ng-container matColumnDef="videoSource">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Video Source </mat-header-cell>
+            <mat-cell *matCellDef="let mission" style="justify-content: space-between"> {{mission.vidSource}}
+              <button type="button" class="btn btn-icon btn-flat-primary mr-1"><i class="feather icon-edit">Delete</i></button>
+              <button type="button" class="btn btn-icon btn-flat-primary mr-1" ><i class="feather icon-plus">Update</i></button>
+            </mat-cell>
+          </ng-container>
+          <!-- Actions Column -->
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+        <div id="myGrid" class="aggrid ag-theme-material"></div>
+      </section>
+
+    </div>
+
+  </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+

@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (!admin) {
       return next.handle(request);
     }
-    const modifiedRequest = request.clone({headers: request.headers.append('Authorization', 'Bearer ' + admin.token)});
+    const modifiedRequest = request.clone({headers: request.headers.append('Authorization', 'Bearer ' + admin.response.token)});
     return next.handle(modifiedRequest);
   }
 }

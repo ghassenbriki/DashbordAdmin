@@ -37,7 +37,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
     const toastParams = {
       positionClass: 'toast-bottom-right',
-      disableTimeOut: false 
+      disableTimeOut: false
     };
 
     this.isLoading = true;
@@ -46,8 +46,6 @@ export class SignInComponent implements OnInit, OnDestroy {
       this.isLoading = false;
       this.authService.createAdmin(authResponse);
       this.authService.redirectToHome();
-      
-      
     }, () => {
       this.isLoading = false;
       this.toaster.error('Unable to login', 'Error', toastParams);
@@ -55,4 +53,3 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
 }
-/* dhiadhia123 */

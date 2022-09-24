@@ -14,22 +14,20 @@ export class AuthService {
   constructor(private http: HttpClient, private urlService: HostUrlService, private router: Router) {
   }
 
-  adminSubject = new BehaviorSubject<Admin>(null);
+  adminSubject = new BehaviorSubject<any>(null);
   url = this.urlService.url;
 
   // return a subscription to the sign in
-  signIn(email: string, password: string) {
-    console.log(email);
+  signIn(username: string, password: string) {
+    console.log(username);
     console.log(password);
-    const resultat = this.http.post(this.url + '/admin/login', {email, password});
-    console.log(resultat);    
-    return resultat;
+    const result = this.http.post(this.url + 'AdminAuth/Login', {username, password});
+    console.log(result);
+    return result;
   }
 
   createAdmin(authResponse: any) {
-    const a = authResponse.admin;
-    const token = authResponse.token;
-    const admin: Admin = {...a, token};
+    const admin: any = authResponse;
     this.storeAdmin(admin);
     this.adminSubject.next(admin);
   }
@@ -57,7 +55,7 @@ export class AuthService {
     this.redirectToSignIn();
   }
 
-  storeAdmin(admin: Admin) {
+  storeAdmin(admin: any) {
     localStorage.setItem('adminData', JSON.stringify(admin));
   }
 }
