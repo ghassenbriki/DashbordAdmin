@@ -1,5 +1,5 @@
 export interface MissionModel{
-  Id: number;
+  id: number;
   Sponsor: string;
   category: string;
   vidSource: string;

@@ -1,5 +1,5 @@
 export interface FeedbackModel{
-  Id: number;
+  id: number;
   message: string;
   date: string;
 }

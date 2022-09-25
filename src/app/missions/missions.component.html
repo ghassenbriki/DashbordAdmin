@@ -11,7 +11,7 @@
           <!-- ID Column -->
           <ng-container matColumnDef="Id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-            <mat-cell *matCellDef="let mission " [routerLinkActive]="'active'" >{{mission.Id}}</mat-cell>
+            <mat-cell *matCellDef="let mission " [routerLinkActive]="'active'" >{{mission.id}}</mat-cell>
           </ng-container>
           <!-- Progress Column -->
           <ng-container matColumnDef="Sponsor">
@@ -25,7 +25,7 @@
           <!-- Color Column -->
           <ng-container matColumnDef="videoSource">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Video Source </mat-header-cell>
-            <mat-cell *matCellDef="let mission" style="justify-content: space-between"> {{mission.vidSource}}
+            <mat-cell *matCellDef="let mission" style="justify-content: space-between"> {{mission.vidSource | slice:0:10}}...
               <button type="button" class="btn btn-icon btn-flat-primary mr-1"><i class="feather icon-edit">Delete</i></button>
               <button type="button" class="btn btn-icon btn-flat-primary mr-1" ><i class="feather icon-plus">Update</i></button>
             </mat-cell>
@@ -37,7 +37,9 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;">
           </mat-row>
         </mat-table>
-        <div id="myGrid" class="aggrid ag-theme-material"></div>
+        <div id="myGrid" class="aggrid ag-theme-material">
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of notifications"></mat-paginator>
+      </div>
       </section>
 
     </div>
