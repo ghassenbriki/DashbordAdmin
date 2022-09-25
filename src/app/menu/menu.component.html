@@ -21,7 +21,7 @@
         class="feather icon-clipboard"></i><span class="menu-title">Feedbacks</span></a></li>
 
       <div class="add-data-btn">
-        <button id="add-client-id" class=" nav-item" data-toggle="modal" data-target="#add-id-modal"><i
+        <button id="add-client-id" class=" nav-item" data-toggle="modal" data-target="#add-id-modal" (click)=redirection()><i
           class="feather icon-plus add-id-icon"></i><span class="menu-title">Add Mission</span></button>
       </div>
 
@@ -31,39 +31,9 @@
 <!-- END: Main Menu-->
 
 
-<!-- confirmation modal -->
-<div class="modal fade text-left" id="add-id-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110"
-     style="display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary white">
-        <h5 class="modal-title" id="myModalLabel110">Add wheelchair ID</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Wheelchair ID must be unique and provided to the client to allow him create an account
-        <br><br>
 
-        <div class="container-fluid">
-          <div class="row">
+ 
 
-            <input type="number" class="col-8 form-control" #addedIdElement>
-
-            <div class="col-4">
-              <button type="button" class="btn add-id-button btn-primary waves-effect waves-light"
-              (click)="addClientId(addedIdElement)">
-                Add ID
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
 
 
 

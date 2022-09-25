@@ -4,10 +4,13 @@ import {AuthGuard} from './shared/authentication/auth.guard';
 import {LoginGuard} from './shared/authentication/login.guard';
 import {FeedbacksComponent} from './feedbacks/feedbacks.component';
 import {MissionsComponent} from './missions/missions.component';
+import { FormMissionComponent } from './form-mission/form-mission.component';
+
 
 const routes: Routes = [
   {path: 'feedbacks', component: FeedbacksComponent , canActivate : [AuthGuard]},
   {path: '', component: MissionsComponent , canActivate : [AuthGuard]},
+  {path: 'form', component: FormMissionComponent, canActivate: [AuthGuard]},
   {path: 'login', loadChildren: './modules/sign-in/sign-in.module#SignInModule', canActivate : [LoginGuard]},
   {path : '**' , redirectTo : ''}
 ];

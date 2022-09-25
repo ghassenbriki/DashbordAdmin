@@ -21,6 +21,13 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { FormMissionComponent } from './form-mission/form-mission.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 
@@ -32,6 +39,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     FooterComponent,
     MissionsComponent,
     FeedbacksComponent,
+    FormMissionComponent,
 
   ],
   imports: [
@@ -46,7 +54,16 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     ToastrModule.forRoot(),
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatInputModule ,
+    MatIconModule,
+
+    
+
+    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
